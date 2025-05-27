@@ -9,7 +9,7 @@ def chromium_page(playwright: Playwright) -> Page:
 
 @pytest.fixture(scope="session")
 def initialize_browser_state(playwright: Playwright) -> None:
-    # print("start init")
+
     browser = playwright.chromium.launch(headless=False)
 
     context = browser.new_context()
@@ -30,19 +30,18 @@ def initialize_browser_state(playwright: Playwright) -> None:
     button_registration.click()
 
     context.storage_state(path='browser-state.json')
-    # print("stop init")
+
+    browser.close()
 
 
 
 @pytest.fixture
 def chromium_page_with_state(initialize_browser_state, playwright: Playwright) -> Page:
-    # print("chrome init")
-
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(storage_state='browser-state.json')
-    # print("chrome stop")
-    page = context.new_page()
-    return page
+    yield context.new_page()
+    browser.close()
+
 
 
 

@@ -1,6 +1,9 @@
 from playwright.sync_api import sync_playwright, expect, Page
 import pytest
 
+from pages.courses_list_page import CoursesListPage, CheckVisibleCourseCardParams
+
+
 @pytest.mark.courses
 @pytest.mark.regression
 def test_empty_courses_list(chromium_page_with_state: Page):
@@ -23,3 +26,15 @@ def test_empty_courses_list(chromium_page_with_state: Page):
     expect(description_text).to_have_text('Results from the load test pipeline will be displayed here')
     # print("stop test")
 
+# поставил урл но работать не будет так как не созданы карты
+def test_course_page(courses_list_page: CoursesListPage):
+    courses_list_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses")
+    courses_list_page.check_visible_course_card(
+        CheckVisibleCourseCardParams(
+            index=0,
+            title="Playwright",
+            max_score="10",
+            min_score="1",
+            estimated_time="2 weeks"
+        )
+    )

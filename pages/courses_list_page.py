@@ -65,7 +65,7 @@ class CoursesListPage(BasePage):
         expect(self.course_min_text.nth(params.index)).to_have_text(f"Min score: {params.min_score}")
 
         expect(self.course_estimated_time_text.nth(params.index)).to_be_visible()
-        expect(self.course_estimated_time_text.nth(params.index)).to_have_text(f"Estimated time: {params.estimated}")
+        expect(self.course_estimated_time_text.nth(params.index)).to_have_text(f"Estimated time: {params.estimated_time}")
 
     def click_edit_course(self, index: int):
         self.course_menu_button.nth(index).click()

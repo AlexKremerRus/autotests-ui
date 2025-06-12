@@ -53,7 +53,7 @@ def test_create_course(courses_list_page: CoursesListPage, create_course_page:Cr
     create_course_page.create_course_form.check_visible(course_form_params_empty)
 
     create_course_page.create_course_exercises_toolbar.check_visible()
-    # create_course_page.create_course_exercises_toolbar.click_create_exercises_button()
+
     create_course_page.check_visible_exercises_empty_view()
     create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
     create_course_page.image_upload_widget.check_visible(is_image_upload=True)

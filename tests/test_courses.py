@@ -1,8 +1,9 @@
 from playwright.sync_api import sync_playwright, expect, Page
 import pytest
 
+from components.courses.create_course_form_component import CourseFormParams
 from pages.courses_list_page import CoursesListPage, CheckVisibleCourseCardParams
-from pages.create_course_page import CreateCoursePage, CourseFormParams
+from pages.create_course_page import CreateCoursePage
 
 course_form_params_empty = CourseFormParams(
     title='',
@@ -46,20 +47,22 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
 @pytest.mark.regression
 def test_create_course(courses_list_page: CoursesListPage, create_course_page:CreateCoursePage):
     create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
-    create_course_page.check_visible_create_course_title()
-    create_course_page.check_disabled_create_course_button()
+    create_course_page.create_course_toolbar.check_visible()
 
     create_course_page.image_upload_widget.check_visible()
-    create_course_page.check_visible_create_course_form(course_form_params_empty)
+    create_course_page.create_course_form.check_visible(course_form_params_empty)
 
-    create_course_page.check_visible_exercises_title()
-    create_course_page.check_visible_create_exercises_button()
+    create_course_page.create_course_exercises_toolbar.check_visible()
+    # create_course_page.create_course_exercises_toolbar.click_create_exercises_button()
     create_course_page.check_visible_exercises_empty_view()
     create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
     create_course_page.image_upload_widget.check_visible(is_image_upload=True)
-    create_course_page.fill_create_course_form(course_form_params_tests)
-    create_course_page.click_create_course_button()
+
+    create_course_page.create_course_form.fill(course_form_params_tests) ###
+    create_course_page.create_course_toolbar.click_create_course_button()
     courses_list_page.toolbar_view.check_visible()
     courses_list_page.course_view.check_visible( card_params_tests)
+
+
 
 

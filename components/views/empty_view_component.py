@@ -15,6 +15,6 @@ class EmptyViewComponent(BaseComponent):
         expect(self.title).to_be_visible()
         expect(self.title).to_have_text(title)
 
-        expect(self.description ).to_be_visible()
+        expect(self.description).to_be_visible()
         expect(self.description).to_have_text(description)
 

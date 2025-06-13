@@ -2,6 +2,10 @@ from components.base_component import BaseComponent
 from playwright.sync_api import Page,expect
 from dataclasses import dataclass
 
+from elements.input import Input
+from elements.textarea import Textarea
+
+
 @dataclass
 class CourseFormParams:
 
@@ -16,46 +20,45 @@ class CreateCourseFormComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.title_input = page.get_by_test_id('create-course-form-title-input').locator('input')
-        self.estimated_time_input = page.get_by_test_id(
-            'create-course-form-estimated-time-input').locator('input')
-        self.description_textarea = page.get_by_test_id('create-course-form-description-input').locator(
-            'textarea').first
-        self.msx_score_input = page.get_by_test_id('create-course-form-max-score-input').locator('input')
-        self.min_score_input = page.get_by_test_id('create-course-form-min-score-input').locator('input')
+        self.title_input = Input(page, 'create-course-form-title-input', "title")
+        self.estimated_time_input = Input(page,
+            'create-course-form-estimated-time-input', "estimated time")
+        self.description_textarea = Textarea(page, 'create-course-form-description-input', 'description')
+        self.msx_score_input = Input(page, 'create-course-form-max-score-input', "max score")
+        self.min_score_input = Input(page, 'create-course-form-min-score-input', "min score")
 
 
     def fill(self, params: CourseFormParams):
-        expect(self.title_input).to_be_visible()
+        self.title_input.check_visible()
         self.title_input.fill(params.title)
 
-        expect(self.estimated_time_input).to_be_visible()
+        self.estimated_time_input.check_visible()
         self.estimated_time_input.fill(params.estimated_time)
 
-        expect(self.description_textarea).to_be_visible()
+        self.description_textarea.check_visible()
         self.description_textarea.fill(params.description)
 
-        expect(self.msx_score_input).to_be_visible()
+        self.msx_score_input.check_visible()
         self.msx_score_input.fill(params.max_score)
 
-        expect(self.min_score_input).to_be_visible()
+        self.min_score_input.check_visible()
         self.min_score_input.fill(params.min_score)
 
     def check_visible(self, params: CourseFormParams):
-        expect(self.title_input).to_be_visible()
-        expect(self.title_input).to_have_value(params.title)
+        self.title_input.check_visible()
+        self.title_input.check_have_value(params.title)
 
-        expect(self.estimated_time_input).to_be_visible()
-        expect(self.estimated_time_input).to_have_value(params.estimated_time)
+        self.estimated_time_input.check_visible()
+        self.estimated_time_input.check_have_value(params.estimated_time)
 
-        expect(self.description_textarea).to_be_visible()
-        expect(self.description_textarea).to_have_value(params.description)
+        self.description_textarea.check_visible()
+        self.description_textarea.check_have_value(params.description)
 
-        expect(self.msx_score_input).to_be_visible()
-        expect(self.msx_score_input).to_have_value(params.max_score)
+        self.msx_score_input.check_visible()
+        self.msx_score_input.check_have_value(params.max_score)
 
-        expect(self.min_score_input).to_be_visible()
-        expect(self.min_score_input).to_have_value(params.min_score)
+        self.min_score_input.check_visible()
+        self.min_score_input.check_have_value(params.min_score)
 
 
 

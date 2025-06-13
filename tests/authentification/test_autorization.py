@@ -43,3 +43,4 @@ class TestAuthorization:
         login_page.click_registration_link()
 
         registration_page.registration_form.check_visible(email="", username="", password="")
+

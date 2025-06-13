@@ -1,8 +1,7 @@
-from playwright.sync_api import sync_playwright, expect, Page
 import pytest
 
-from pages.dashboard_page import DashboardPage
-from pages.registration_page import RegistrationPage
+from pages.dashboard.dashboard_page import DashboardPage
+from pages.aurhentification.registration_page import RegistrationPage
 
 @pytest.mark.regression
 @pytest.mark.registration

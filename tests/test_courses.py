@@ -1,9 +1,8 @@
-from playwright.sync_api import sync_playwright, expect, Page
 import pytest
 
 from components.courses.create_course_form_component import CourseFormParams
-from pages.courses_list_page import CoursesListPage, CheckVisibleCourseCardParams
-from pages.create_course_page import CreateCoursePage
+from pages.courses.courses_list_page import CoursesListPage, CheckVisibleCourseCardParams
+from pages.courses.create_course_page import CreateCoursePage
 
 course_form_params_empty = CourseFormParams(
     title='',

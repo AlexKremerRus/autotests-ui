@@ -1,6 +1,5 @@
-from playwright.sync_api import sync_playwright, expect, Page
 import pytest
-from pages.login_page import LoginPage
+from pages.aurhentification.login_page import LoginPage
 
 
 @pytest.mark.regression

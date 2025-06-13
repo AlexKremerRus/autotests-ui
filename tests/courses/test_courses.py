@@ -93,7 +93,6 @@ class TestCourses:
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
         create_course_page.create_course_toolbar.check_visible()
 
-        # создание курса
         create_course_page.image_upload_widget.check_visible()
         create_course_page.create_course_form.check_visible(course_form_params_empty)
 
@@ -106,11 +105,9 @@ class TestCourses:
         create_course_page.create_course_form.fill(course_form_params_tests_for_edit)
         create_course_page.create_course_toolbar.click_create_course_button()
 
-        # Проверка заполненных данных
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.course_view.check_visible(card_params_tests_for_edit)
 
-        # Кликаем на редактирование
         courses_list_page.course_view.menu.click_edit(index=0)
         create_course_page.create_course_form.fill(course_form_params_tests_for_edit_post)
         create_course_page.create_course_toolbar.click_create_course_button()

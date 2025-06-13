@@ -20,7 +20,7 @@ with sync_playwright() as playwright:
     button_registration = page.get_by_test_id('registration-page-registration-button')
     button_registration.click()
 
-    context.storage_state(path='browser-state.json')
+    context.storage_state(path='../browser-state.json')
 
     # page.wait_for_timeout(2000)
 
@@ -29,6 +29,21 @@ with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=False)
     context =  browser.new_context(storage_state='browser-state.json')
     page = context.new_page()
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard")
+    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses")
+
+    courser_title = page.get_by_test_id('courses-list-toolbar-title-text')
+    expect(courser_title).to_be_visible()
+    expect(courser_title).to_have_text('Courses')
+
+    empty_icon = page.get_by_test_id('courses-list-empty-view-icon')
+    expect(empty_icon).to_be_visible()
+
+    title_text = page.get_by_test_id('courses-list-empty-view-title-text')
+    expect(title_text).to_be_visible()
+    expect(title_text).to_have_text('There is no results')
+
+    description_text = page.get_by_test_id('courses-list-empty-view-description-text')
+    expect(description_text).to_be_visible()
+    expect(description_text).to_have_text('Results from the load test pipeline will be displayed here')
 
     page.wait_for_timeout(1000)

@@ -17,6 +17,9 @@ from pages.aurhentification.registration_page import RegistrationPage
 @allure.feature(AllureFeature.AUTHENTIFICATION)
 @allure.story(AllureStories.REGISTRATION)
 @allure.severity(Severity.BLOCKER)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.AUTHENTIFICATION)
+@allure.sub_suite(AllureStories.REGISTRATION)
 class TestRegistration:
     @allure.title("Registration with correct email, username and password")
     def test_successful_registration(self,registration_page: RegistrationPage, dashboard_page:DashboardPage):

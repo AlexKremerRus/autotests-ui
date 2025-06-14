@@ -1,5 +1,10 @@
 import pytest
-
+import allure
+from tools.allure.tags import AllureTag
+from tools.allure.epics import AllureEpic
+from tools.allure.stories import AllureStories
+from tools.allure.features import AllureFeature
+from allure_commons.types import Severity
 from components.courses.create_course_form_component import CourseFormParams
 from pages.courses.courses_list_page import CoursesListPage, CheckVisibleCourseCardParams
 from pages.courses.create_course_page import CreateCoursePage
@@ -62,7 +67,13 @@ card_params_tests_for_edit_post = CheckVisibleCourseCardParams(
 
 @pytest.mark.courses
 @pytest.mark.regression
+@allure.tag(AllureTag.COURSES, AllureTag.REGRESSION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.COURSES)
+@allure.story(AllureStories.COURSES)
 class TestCourses:
+    @allure.title('Check displaying of empty courses list')
+    @allure.severity(Severity.NORMAL)
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         courses_list_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses")
         courses_list_page.navbar.check_visible('username')
@@ -71,6 +82,8 @@ class TestCourses:
 
         courses_list_page.check_visible_empty_view()
 
+    @allure.title('Create courses ')
+    @allure.severity(Severity.CRITICAL)
     def test_create_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
         create_course_page.create_course_toolbar.check_visible()
@@ -89,6 +102,8 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.course_view.check_visible(card_params_tests)
 
+    @allure.title('Edit course')
+    @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, create_course_page:CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
         create_course_page.create_course_toolbar.check_visible()
@@ -114,6 +129,3 @@ class TestCourses:
 
         courses_list_page.course_view.check_visible(card_params_tests_for_edit_post)
 
-        # Комментарий - вопрос для Никиты
-        # 1 - я использую дата класс - но тут лучше наверно уже использовать функцию - которая генерит данные и выплевывает объекта типа дата класс - чтобы не было хардкода именно данных
-        # 2 - по факту я использую шаги из кейса создания курса - могу ли я просто вызвать функцию test_create_course ?

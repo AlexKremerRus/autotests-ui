@@ -103,6 +103,7 @@ class TestCourses:
         create_course_page.create_course_form.fill(course_form_params_tests)
         create_course_page.create_course_toolbar.click_create_course_button()
         courses_list_page.toolbar_view.check_visible()
+
         courses_list_page.course_view.check_visible(card_params_tests)
 
     @allure.title('Edit course')

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from elements.image import Image
 from elements.text import Text
-
+import allure
 
 @dataclass
 class CheckVisibleCourseCardParams:
@@ -30,6 +30,7 @@ class CourseViewComponent(BaseComponent):
 
         self.estimated_time_text = Text(page, 'course-estimated-time-info-row-view-text', 'estimated time')
 
+    @allure.step("Check visible course view at index '{params.index}' ")
     def check_visible(self, params:CheckVisibleCourseCardParams):
 
         self.image.check_visible(nth=params.index)

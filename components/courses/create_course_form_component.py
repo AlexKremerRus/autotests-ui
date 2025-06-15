@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from elements.input import Input
 from elements.textarea import Textarea
-
+import allure
 
 @dataclass
 class CourseFormParams:
@@ -27,7 +27,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.msx_score_input = Input(page, 'create-course-form-max-score-input', "max score")
         self.min_score_input = Input(page, 'create-course-form-min-score-input', "min score")
 
-
+    @allure.step("Fill course form")
     def fill(self, params: CourseFormParams):
         self.title_input.check_visible()
         self.title_input.fill(params.title)
@@ -44,6 +44,8 @@ class CreateCourseFormComponent(BaseComponent):
         self.min_score_input.check_visible()
         self.min_score_input.fill(params.min_score)
 
+
+    @allure.step("Check visible course form")
     def check_visible(self, params: CourseFormParams):
         self.title_input.check_visible()
         self.title_input.check_have_value(params.title)

@@ -30,19 +30,22 @@ class CourseViewComponent(BaseComponent):
 
         self.estimated_time_text = Text(page, 'course-estimated-time-info-row-view-text', 'estimated time')
 
-    @allure.step("Check visible course view at index '{params.index}' ")
+    # @allure.step("Check visible course view at index '{params.index}' ")
     def check_visible(self, params:CheckVisibleCourseCardParams):
+        # Дам объяснение зачем так а не декоратором - в декоратор падал объект класса и выдавал ссылку на объект а не его значения
+        # Данное решение избавляет от этой проблеы - сейчас отображается корректно
+        with allure.step(f"Check visible course view at index '{params.index}' "):
 
-        self.image.check_visible(nth=params.index)
+            self.image.check_visible(nth=params.index)
 
-        self.title.check_visible(nth=params.index)
-        self.title.check_have_text(nth=params.index, text=params.title)
+            self.title.check_visible(nth=params.index)
+            self.title.check_have_text(nth=params.index, text=params.title)
 
-        self.max_score_text.check_visible(nth=params.index)
-        self.max_score_text.check_have_text(nth=params.index, text=f"Max score: {params.max_score}")
+            self.max_score_text.check_visible(nth=params.index)
+            self.max_score_text.check_have_text(nth=params.index, text=f"Max score: {params.max_score}")
 
-        self.min_score_text.check_visible(nth=params.index)
-        self.min_score_text.check_have_text(nth=params.index, text=f"Min score: {params.min_score}")
+            self.min_score_text.check_visible(nth=params.index)
+            self.min_score_text.check_have_text(nth=params.index, text=f"Min score: {params.min_score}")
 
-        self.estimated_time_text.check_visible(nth=params.index)
-        self.estimated_time_text.check_have_text(nth=params.index, text=f"Estimated time: {params.estimated_time}")
+            self.estimated_time_text.check_visible(nth=params.index)
+            self.estimated_time_text.check_have_text(nth=params.index, text=f"Estimated time: {params.estimated_time}")

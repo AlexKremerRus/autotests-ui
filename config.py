@@ -16,6 +16,8 @@ class TestUser(BaseModel):
 
 class TestData(BaseModel):
     image_png_file:FilePath
+    image_jpg_file:FilePath
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -33,6 +35,9 @@ class Settings(BaseSettings):
     videos_dir: DirectoryPath
     tracing_dir : DirectoryPath
     browser_state_file : FilePath
+
+    def get_base_url(self) -> str:
+        return f"{self.app_url}/"
 
     @classmethod
     def initialize(cls) -> Self:

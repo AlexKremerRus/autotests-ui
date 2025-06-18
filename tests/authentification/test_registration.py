@@ -25,6 +25,7 @@ from tools.routes import AppRoute
 @allure.suite(AllureFeature.AUTHENTIFICATION)
 @allure.sub_suite(AllureStories.REGISTRATION)
 class TestRegistration:
+    @pytest.mark.xdist_group(name="authorization-group")
     @allure.title("Registration with correct email, username and password")
     def test_successful_registration(self,registration_page: RegistrationPage, dashboard_page:DashboardPage):
         registration_page.visit(AppRoute.REGISTRATION)

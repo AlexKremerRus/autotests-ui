@@ -46,7 +46,7 @@ jobs:
           allure-results: allure-results
           allure-history: allure-history
 
-      - name: Deploy
+      - name: Deploy report
         uses: peaceiris/actions-gh-pages@v4
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}

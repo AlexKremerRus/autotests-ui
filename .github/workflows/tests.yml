@@ -30,6 +30,24 @@ jobs:
       - name: Run Playwright tests
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2 
+          
+      # Сохраняем результаты тестов как артефакт
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+          retention-days: 1
+  publish-report:
+    needs: run-tests  # Запускается только после успеха run-tests
+    runs-on: ubuntu-latest
+    steps:
+      # Загружаем сохранённые результаты тестов
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
       - name: Get Allure history
         uses: actions/checkout@v4

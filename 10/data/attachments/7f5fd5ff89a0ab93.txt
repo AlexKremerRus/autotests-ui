@@ -1,0 +1,19 @@
+INFO     BASE_PAGE:base_page.py:17 Opening url AppRoute.REGISTRATION
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-email-input' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:32 Checking that 'input' 'Email input' is visible 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-email-input' at index '0' 
+INFO     INPUT:input.py:21 Fill 'input' 'Email input' to value 'user.name@gmail.com' 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-username-input' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:32 Checking that 'input' 'Username input' is visible 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-username-input' at index '0' 
+INFO     INPUT:input.py:21 Fill 'input' 'Username input' to value 'username' 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-password-input' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:32 Checking that 'input' 'Password input' is visible 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-form-password-input' at index '0' 
+INFO     INPUT:input.py:21 Fill 'input' 'Password input' to value 'password' 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='registration-page-registration-button' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:25 Clicking 'button' 'Registration button' 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='dashboard-toolbar-title-text' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:32 Checking that 'text' 'Title' is visible 
+INFO     BASE_ELEMENT:base_element.py:18 getting locator with 'data-test-id'='dashboard-toolbar-title-text' at index '0' 
+INFO     BASE_ELEMENT:base_element.py:40 Checking that 'text' 'Title' has text 'Dashboard'

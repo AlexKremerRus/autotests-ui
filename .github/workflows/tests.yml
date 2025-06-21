@@ -30,14 +30,45 @@ jobs:
       - name: Run Playwright tests
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2 
-          
-      # Сохраняем результаты тестов как артефакт
+
+      - name: Restore Coverage history
+        uses: actions/cache/restore@v4
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+          restore-keys: |
+            coverage-history-
+
+
+      - name: Generate Coverage Report
+        run: |
+          ui-coverage-tool save-report 
+
+      - name: Cache Coverage history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+
+
+      - name: Upload Coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.html
+          retention-days: 1
+
+      # Сохраняем результаты тестов
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
           retention-days: 1
+
+
+
   publish-report:
     needs: run-tests  # Запускается только после успеха run-tests
     runs-on: ubuntu-latest
@@ -61,8 +92,8 @@ jobs:
         uses: simple-elf/allure-report-action@v1.7
         if: always()
         with:
-          allure-results: allure-results
-          allure-history: allure-history
+          allure_results: allure-results
+          allure_history: allure-history
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

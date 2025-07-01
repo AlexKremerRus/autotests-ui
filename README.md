@@ -1,31 +1,26 @@
-# UI Course Automation Tests
+# Автоматизированные тесты для UI курса
 
-This project implements automated tests for
-the [UI Course Test Application](https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login). The
-tests are written using **Python**, **Pytest**, **Allure** and **Playwright**. The test application’s source code is available
-on [GitHub](https://github.com/Nikita-Filonov/qa-automation-engineer-ui-course).
+Этот проект реализует автоматизированные тесты для [Тестового приложения UI курса](https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login). Тесты написаны с использованием **Python**, **Pytest**, **Allure** и **Playwright**. Исходный код тестового приложения доступен на [GitHub](https://github.com/Nikita-Filonov/qa-automation-engineer-ui-course).
+Связь со мноц 👉 [@Al_Star](https://t.me/Al_Star)
 
-## Project Overview
+## Обзор проекта
 
-The goal of this project is to automate the testing of the UI Course application. The automated tests verify various
-functionalities of the application to ensure its stability and correctness. The project structure follows best practices
-for organizing test code with clear, maintainable scripts.
+Цель проекта - автоматизация тестирования приложения UI курса. Автоматизированные тесты проверяют различные функции приложения, чтобы гарантировать его стабильность и корректность. Структура проекта соответствует лучшим практикам организации тестового кода с понятными и поддерживаемыми скриптами.
 
-## Getting Started
+## Начало работы
 
-### Clone the Repository
+### Клонирование репозитория
 
-To get started, clone the project repository using Git:
+Для начала клонируйте репозиторий проекта с помощью Git:
 
 ```bash
 git clone https://github.com/AlexKremerRus/autotests-ui.git
 cd autotests-ui
 ```
 
-### Create a Virtual Environment
+### Создание виртуального окружения
 
-It's recommended to use a virtual environment to manage project dependencies. Follow the instructions for your operating
-system:
+Рекомендуется использовать виртуальное окружение для управления зависимостями проекта. Следуйте инструкциям для вашей операционной системы:
 
 #### Linux / MacOS
 
@@ -41,38 +36,39 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### Install Dependencies
+### Установка зависимостей
 
-Once the virtual environment is activated, install the project dependencies listed in `requirements.txt`:
+После активации виртуального окружения установите зависимости проекта, перечисленные в `requirements.txt`:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Additional Playwright Setup (if needed)
+### Дополнительная настройка Playwright (если необходимо)
 
-If you're running Playwright for the first time, you might need to install the required browsers:
+Если вы запускаете Playwright впервые, может потребоваться установка необходимых браузеров:
 
 ```bash
 playwright install
 ```
 
-### Running the Tests with Allure Report Generation
+### Запуск тестов с генерацией отчета Allure
 
-To run the tests and generate an Allure report, use the following command:
+Для запуска тестов и генерации отчета Allure используйте следующую команду:
 
 ```bash
 pytest -m "regression" --alluredir=./allure-results
 ```
 
-This will execute all tests in the project and display the results in the terminal.
+Эта команда выполнит все тесты проекта и отобразит результаты в терминале.
 
-### Viewing the Allure Report
+### Просмотр отчета Allure
 
-After the tests have been executed, you can generate and view the Allure report with:
+После выполнения тестов вы можете сгенерировать и просмотреть отчет Allure с помощью:
 
 ```bash
 allure serve allure-results
 ```
 
-This command will open the Allure report in your default web browser.
+Эта команда откроет отчет Allure в вашем веб-браузере по умолчанию.
+
